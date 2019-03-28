@@ -17,8 +17,8 @@ public class AccountServiceImpl implements AccountService {
   private AcoountDao acoountDao;
   private RateService rateService;
 
-  public AccountServiceImpl() {
-
+  public AccountServiceImpl(AcoountDao acoountDao) {
+    this.acoountDao=acoountDao;
   }
 
   public AccountServiceImpl(final AcoountDao acoountDao, RateService rateService) {
@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
   }
 
   @Override
-  public void create(final String number, final BigDecimal balance, final String currency, final boolean status, final BigDecimal limit) {
+  public void create(final String number, final Long balance, final String currency, final boolean status, final Long limit) {
     acoountDao.create(number, balance, currency, status, limit);
   }
 
@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
   }
 
   @Override
-  public void transfer(final String from, final String to, final String currency, final BigDecimal amount) {
+  public void transfer(final String from, final String to, final String currency, final Long amount) {
     Account fromAccount = acoountDao.findAccountByNumber(from);
     if (fromAccount.isActive()) {
       if (fromAccount.hasLimitedAmount(amount)) {

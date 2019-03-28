@@ -1,7 +1,5 @@
 package com.revolut.assessment.dao.Impl;
 
-import java.math.BigDecimal;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -22,7 +20,7 @@ public class AccountDaoImpl implements AcoountDao {
   private static Logger LOG = LoggerFactory.getLogger(AccountDaoImpl.class);
 
   @Override
-  public void create(final String number, final BigDecimal balance, final String currency, final boolean status, final BigDecimal limit) {
+  public void create(final String number, final Long balance, final String currency, final boolean status, final Long limit) {
     Transaction transaction = null;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
       transaction = session.beginTransaction();

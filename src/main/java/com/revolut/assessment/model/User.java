@@ -6,23 +6,23 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "User", uniqueConstraints = {
-    @UniqueConstraint(columnNames = "id")
-})
+@Table(name = "User")
+
 public class User implements Serializable {
 
   @Id
-  @Column(name = "id", unique = true, nullable = false)
+  @GeneratedValue
+  @Column(name = "userId", unique = true, nullable = false)
   private Long id;
 
   @Column(name = "email", unique = true, nullable = false, length = 100)

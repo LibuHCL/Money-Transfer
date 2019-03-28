@@ -46,11 +46,11 @@ public class RateServiceImpl implements RateService {
   }
 
   @Override
-  public BigDecimal converter(final String from, final String to, final BigDecimal amount) {
+  public BigDecimal converter(final String from, final String to, final Long amount) {
     if (from.equals(to)) {
-      return amount;
+      return new BigDecimal(amount);
     }
     BigDecimal curRate = currencyRate.get(from + DELIMITER + to);
-    return amount.multiply(curRate).setScale(2, DOWN);
+    return new BigDecimal(amount).multiply(curRate).setScale(2, DOWN);
   }
 }

@@ -18,7 +18,12 @@
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-servlets</artifactId>
+      <artifactId>jetty-servlet</artifactId>
+      <version>9.4.15.v20190215</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-util</artifactId>
       <version>9.4.15.v20190215</version>
     </dependency>
     <!--dependency related to logging-->
@@ -33,14 +38,9 @@
       <version>1.7.26</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>2.10.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>2.11.2</version>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
     </dependency>
     <!--dependency related to RESTFul web services-->
     <dependency>
@@ -71,7 +71,12 @@
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-servlet</artifactId>
+      <artifactId>jersey-container-servlet-core</artifactId>
+      <version>2.28</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-jetty-http</artifactId>
       <version>2.28</version>
     </dependency>
     <!--dependency related to ORM and In memory database-->
@@ -108,7 +113,23 @@
   </dependencies>
 
   <build>
+    <finalName>MoneyTransferAPI</finalName>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>com.revolut.assessment.ApplicationServer</mainClass>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
@@ -123,9 +144,6 @@
         <version>9.4.15.v20190215</version>
         <configuration>
           <scanIntervalSeconds>10</scanIntervalSeconds>
-          <webApp>
-            <contextPath>/revolut-bank</contextPath>
-          </webApp>
         </configuration>
       </plugin>
       <plugin>

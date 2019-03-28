@@ -1,7 +1,5 @@
 package com.revolut.assessment.model;
 
-import java.math.BigDecimal;
-
 import com.revolut.assessment.dao.AcoountDao;
 
 public class Transfer {
@@ -9,10 +7,10 @@ public class Transfer {
   private final AcoountDao acoountDao;
   private final Account fromAccount;
   private final Account toAccount;
-  private final BigDecimal fromAmount;
-  private final BigDecimal toAmount;
+  private final Long fromAmount;
+  private final Long toAmount;
 
-  public Transfer(final AcoountDao acoountDao, final Account fromAccount, final Account toAccount, final BigDecimal fromAmount, final BigDecimal toAmount) {
+  public Transfer(final AcoountDao acoountDao, final Account fromAccount, final Account toAccount, final Long fromAmount, final Long toAmount) {
     this.acoountDao = acoountDao;
     this.fromAccount = fromAccount;
     this.toAccount = toAccount;

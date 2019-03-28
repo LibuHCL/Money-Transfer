@@ -15,6 +15,10 @@ public enum Endpoints {
   }
 
   public static class Constants {
-    public static final String ACCOUNTS = "ACCOUNTS";
+    public static final String CONTEXT="/payments";
+    public static final String ACCOUNTS = "/accounts";
+    public static final String SEARCH = "/accounts/{accountNumber}";
+    public static final String USERS = "/users";
+
   }
 }

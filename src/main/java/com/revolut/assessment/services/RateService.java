@@ -8,6 +8,6 @@ public interface RateService {
 
   void synchronize();
 
-  BigDecimal converter(String from, String to, BigDecimal amount);
+  BigDecimal converter(String from, String to, Long amount);
 
 }

@@ -23,13 +23,14 @@
 
     <!-- Echo all executed SQL to stdout -->
     <property name="show_sql">true</property>
+    <property name="format_sql">false</property>
 
     <!-- Drop and re-create the database schema on startup -->
-    <property name="hbm2ddl.auto">create</property>
+    <property name="hbm2ddl.auto">update</property>
 
     <mapping class="com.revolut.assessment.model.Account"/>
     <mapping class="com.revolut.assessment.model.User"/>
-
+    <mapping class="com.revolut.assessment.model.Rate"/>
 
   </session-factory>
 </hibernate-configuration>

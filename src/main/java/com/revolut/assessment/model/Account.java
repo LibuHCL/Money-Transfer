@@ -8,32 +8,27 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Account", uniqueConstraints = {
-    @UniqueConstraint(columnNames = "id")
-})
+@Table(name = "Account")
 public class Account implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private Integer id;
+  @Column(name = "accountId")
+  private Long id;
 
   @Column(name = "number")
   private String number;
 
   @Column(name = "balance")
-  private BigDecimal balance;
+  private Long balance;
 
   @Column(name = "currency")
   private String currency;
@@ -42,15 +37,16 @@ public class Account implements Serializable {
   private boolean status;
 
   @Column(name = "limit")
-  private BigDecimal limit;
+  private Long limit;
 
-  @ManyToOne
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "userId")
   private User user;
 
   public Account() {
   }
 
-  public Account(final String number, final BigDecimal balance, final String currency, final boolean status, final BigDecimal limit) {
+  public Account(final String number, final Long balance, final String currency, final boolean status, final Long limit) {
     this.number = number;
     this.balance = balance;
     this.currency = currency;
@@ -59,7 +55,7 @@ public class Account implements Serializable {
   }
 
   public BigDecimal getBalance() {
-    return balance != null ? balance : ZERO;
+    return balance != null ? new BigDecimal(balance) : ZERO;
   }
 
   public String getNumber() {
@@ -70,19 +66,19 @@ public class Account implements Serializable {
     return currency;
   }
 
-  public void debit(BigDecimal amount) {
-    balance = balance.subtract(amount);
+  public void debit(Long amount) {
+    balance = balance - amount;
   }
 
-  public void credit(BigDecimal amount) {
-    balance = balance == null ? amount : balance.add(amount);
+  public void credit(Long amount) {
+    balance = balance == null ? amount : balance + amount;
   }
 
   public boolean greater(Account account) {
     return number.compareTo(account.number) > 0;
   }
 
-  public void checkInsufficientBalance(BigDecimal amount) {
+  public void checkInsufficientBalance(Long amount) {
     if (balance.compareTo(amount) < 0) {
       throw new RuntimeException(format("Insufficient balance (%s) for account:%s, required %s", balance, number, amount));
     }
@@ -96,7 +92,7 @@ public class Account implements Serializable {
     return status;
   }
 
-  public boolean hasLimitedAmount(BigDecimal amount) {
+  public boolean hasLimitedAmount(Long amount) {
     final boolean status = true;
     if (amount.compareTo(limit) > 0) {
       return false;
