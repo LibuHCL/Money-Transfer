@@ -20,12 +20,11 @@ public class UserDaoImpl implements UserDao {
   private static Logger LOG = LoggerFactory.getLogger(UserDaoImpl.class);
 
   @Override
-  public void createUser(final Long id, final String email, final String firstName, final String lastName) {
+  public void createUser(final String email, final String firstName, final String lastName) {
     Transaction transaction = null;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
       transaction = session.beginTransaction();
       User user = new User();
-      user.setId(id);
       user.setEmail(email);
       user.setFirstName(firstName);
       user.setLastName(lastName);

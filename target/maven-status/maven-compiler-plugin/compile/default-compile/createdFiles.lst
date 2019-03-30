@@ -1,5 +1,6 @@
 com/revolut/assessment/constants/Endpoints.class
 com/revolut/assessment/model/Transfer.class
+com/revolut/assessment/web/RateResource.class
 com/revolut/assessment/util/HibernateUtil.class
 com/revolut/assessment/services/Impl/RateServiceImpl.class
 com/revolut/assessment/services/RateService.class
@@ -15,11 +16,14 @@ com/revolut/assessment/dao/RateDao.class
 com/revolut/assessment/web/AccountResource.class
 com/revolut/assessment/constants/Endpoints$Constants.class
 com/revolut/assessment/dao/UserDao.class
+com/revolut/assessment/model/UserRequest.class
 com/revolut/assessment/dao/Impl/UserDaoImpl.class
 com/revolut/assessment/model/AccountRequest.class
+com/revolut/assessment/web/UserResource.class
 com/revolut/assessment/ApplicationServer.class
 com/revolut/assessment/services/UserService.class
 com/revolut/assessment/constants/Status.class
 com/revolut/assessment/services/Impl/UserServiceImpl.class
 com/revolut/assessment/model/User.class
+com/revolut/assessment/model/RateRequest.class
 com/revolut/assessment/services/AccountService.class

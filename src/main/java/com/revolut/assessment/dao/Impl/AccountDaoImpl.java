@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.revolut.assessment.dao.AcoountDao;
 import com.revolut.assessment.model.Account;
+import com.revolut.assessment.model.User;
 import com.revolut.assessment.util.HibernateUtil;
 
 public class AccountDaoImpl implements AcoountDao {
@@ -24,12 +25,17 @@ public class AccountDaoImpl implements AcoountDao {
     Transaction transaction = null;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
       transaction = session.beginTransaction();
+      User user = new User();
+      user.setEmail("test");
+      user.setFirstName("Libu");
+      user.setLastName("Mathew");
       Account account = new Account();
       account.setNumber(number);
       account.setBalance(balance);
       account.setCurrency(currency);
       account.setStatus(status);
       account.setLimit(limit);
+      account.setUser(user);
       session.save(account);
       transaction.commit();
     } catch (HibernateException hbe) {

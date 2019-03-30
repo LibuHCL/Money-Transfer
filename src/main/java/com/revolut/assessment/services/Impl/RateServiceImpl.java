@@ -46,7 +46,7 @@ public class RateServiceImpl implements RateService {
   }
 
   @Override
-  public BigDecimal converter(final String from, final String to, final Long amount) {
+  public BigDecimal converter(final String from, final String to, final String currency, final Long amount) {
     if (from.equals(to)) {
       return new BigDecimal(amount);
     }

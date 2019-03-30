@@ -6,8 +6,11 @@ import static java.math.BigDecimal.ZERO;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +24,7 @@ import lombok.Data;
 public class Account implements Serializable {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "accountId")
   private Long id;
 
@@ -36,10 +40,10 @@ public class Account implements Serializable {
   @Column(name = "status")
   private boolean status;
 
-  @Column(name = "limit")
+  @Column(name = "range")
   private Long limit;
 
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, cascade = CascadeType.ALL)
   @JoinColumn(name = "userId")
   private User user;
 

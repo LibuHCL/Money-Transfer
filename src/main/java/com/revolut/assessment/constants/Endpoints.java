@@ -19,6 +19,8 @@ public enum Endpoints {
     public static final String ACCOUNTS = "/accounts";
     public static final String SEARCH = "/accounts/{accountNumber}";
     public static final String USERS = "/users";
+    public static final String RATE="/rates";
+    public static final String CONVERSION="/conversions";
 
   }
 }

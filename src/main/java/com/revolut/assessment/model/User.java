@@ -7,8 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,7 +21,7 @@ import lombok.Data;
 public class User implements Serializable {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "userId", unique = true, nullable = false)
   private Long id;
 
@@ -34,8 +34,7 @@ public class User implements Serializable {
   @Column(name = "last_name", unique = false, nullable = false, length = 100)
   private String lastName;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private Set<Account> accounts;
 
   public User() {

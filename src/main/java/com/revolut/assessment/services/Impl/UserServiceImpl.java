@@ -18,6 +18,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void create(final String email, final String firstName, final String lastName) {
-
+    userDao.createUser(email, firstName, lastName);
   }
 }
