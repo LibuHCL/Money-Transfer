@@ -16,3 +16,10 @@ a pre-installed container/server).
 2. There are no detailed requirements, use common sense.
 
 # Execution :
+1. Build the maven project with below command
+   mvn clean install
+2. Run the below command to invoke the Jetty server with embedded H2 DB.
+   mvn exec:java
+3. Invoke the REST api with the context path /revolut-bank to the respective resource. Below are the samples.
+   http://localhost:8080/revolut-bank/payments/users
+   http://localhost:8080/revolut-bank/payments/accounts

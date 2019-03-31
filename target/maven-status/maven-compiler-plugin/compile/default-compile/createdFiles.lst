@@ -23,6 +23,7 @@ com/revolut/assessment/web/UserResource.class
 com/revolut/assessment/ApplicationServer.class
 com/revolut/assessment/services/UserService.class
 com/revolut/assessment/constants/Status.class
+com/revolut/assessment/model/TransferRequest.class
 com/revolut/assessment/services/Impl/UserServiceImpl.class
 com/revolut/assessment/model/User.class
 com/revolut/assessment/model/RateRequest.class

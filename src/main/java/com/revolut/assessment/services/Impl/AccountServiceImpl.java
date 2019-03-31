@@ -9,6 +9,7 @@ import com.revolut.assessment.dao.AcoountDao;
 import com.revolut.assessment.model.Account;
 import com.revolut.assessment.services.AccountService;
 import com.revolut.assessment.services.RateService;
+import com.revolut.assessment.model.Transfer;
 
 public class AccountServiceImpl implements AccountService {
 
@@ -18,7 +19,7 @@ public class AccountServiceImpl implements AccountService {
   private RateService rateService;
 
   public AccountServiceImpl(AcoountDao acoountDao) {
-    this.acoountDao=acoountDao;
+    this.acoountDao = acoountDao;
   }
 
   public AccountServiceImpl(final AcoountDao acoountDao, RateService rateService) {
@@ -44,8 +45,8 @@ public class AccountServiceImpl implements AccountService {
         Account toAccount = acoountDao.findAccountByNumber(to);
         if (toAccount.isActive()) {
           BigDecimal fromAmount = rateService.converter(currency, fromAccount.getCurrency(), amount);
-          BigDecimal toAmount = rateService.converter(currency, toAccount.getCurrency(), amount);
-
+          BigDecimal toAmount = rateService.converter(toAccount.getCurrency(), currency, amount);
+          new Transfer(acoountDao, fromAccount, toAccount, fromAmount.longValue(), toAmount.longValue()).send();
         }
       }
 

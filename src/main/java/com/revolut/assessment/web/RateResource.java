@@ -53,7 +53,7 @@ public class RateResource {
     builder.path(transferRequest.getCurrency());
     try {
       transferRequest.validate();
-      rateService.converter(transferRequest.getFrom(), transferRequest.getTo(), transferRequest.getCurrency(), transferRequest.getAmount());
+      rateService.converter(transferRequest.getFrom(), transferRequest.getTo(), transferRequest.getAmount());
       return Response.created(builder.build()).entity(new WebResponse(Status.SUCCESS.getStatus(), "currency has been converted successfully")).build();
     } catch (Exception e) {
       LOG.error(e.getMessage(), e);

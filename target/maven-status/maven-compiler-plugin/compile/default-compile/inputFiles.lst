@@ -18,6 +18,7 @@
 /Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/dao/UserDao.java
 /Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/services/UserService.java
 /Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/dao/Impl/UserDaoImpl.java
+/Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/model/TransferRequest.java
 /Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/model/UserRequest.java
 /Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/model/Account.java
 /Users/mathew.l/Branches/MoneyTransferAPI/src/main/java/com/revolut/assessment/dao/Impl/RateDaoImpl.java
