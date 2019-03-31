@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
+import org.junit.Test;
 
 import com.revolut.assessment.constants.Endpoints;
 import com.revolut.assessment.model.AccountRequest;
@@ -26,23 +27,25 @@ public class AccountResourceTest extends JerseyTest {
     return new ResourceConfig(AccountResource.class);
   }
 
+  @Test
   public void createAccountTest() {
     AccountRequest accountRequest = new AccountRequest("101", "101", "INR", true, "1000");
-    Response response = target("/revolut-bank" + Endpoints.Constants.CONTEXT + Endpoints.Constants.ACCOUNTS)
+    Response response = target( Endpoints.Constants.CONTEXT + Endpoints.Constants.ACCOUNTS)
         .request()
         .post(Entity.entity(accountRequest, MediaType.APPLICATION_JSON));
 
-    assertEquals("Should return status 200", 200, response.getStatus());
+    assertEquals("Should return status 201", 201, response.getStatus());
     assertNotNull("Should return account", response.getEntity());
   }
 
+  @Test
   public void createAccountInvalidAccountNumberTest() {
-    AccountRequest accountRequest = new AccountRequest("", "101", "EUR", true, "10000");
-    Response response = target("/revolut-bank" + Endpoints.Constants.CONTEXT + Endpoints.Constants.ACCOUNTS)
+    AccountRequest accountRequest = new AccountRequest();
+    Response response = target( Endpoints.Constants.CONTEXT + Endpoints.Constants.ACCOUNTS)
         .request()
         .post(Entity.entity(accountRequest, MediaType.APPLICATION_JSON));
 
-    assertEquals("Should return status 400", 400, response.getStatus());
+    assertEquals("Should return status 500", 500, response.getStatus());
     assertNotNull("Invalid account number", response.getEntity());
   }
 

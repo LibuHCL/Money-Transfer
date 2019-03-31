@@ -4,8 +4,12 @@ import static java.math.RoundingMode.DOWN;
 import static java.math.RoundingMode.HALF_UP;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -37,9 +41,16 @@ public class RateServiceImpl implements RateService {
 
   @Override
   public void synchronize() {
+    DecimalFormat decimalFormat = new DecimalFormat("0.0", new DecimalFormatSymbols(Locale.GERMAN));
+    decimalFormat.setParseBigDecimal(true);
     List<Rate> rates = rateDao.getAllCurrencyRates();
     rates.forEach(rate -> {
-      BigDecimal roundedRate = new BigDecimal(rate.getCurrencyRate()).setScale(4, HALF_UP);
+      BigDecimal roundedRate = null;
+      try {
+        roundedRate = ((BigDecimal) decimalFormat.parse(rate.getCurrencyRate())).setScale(4, HALF_UP);
+      } catch (ParseException e) {
+        LOG.error(e.getMessage());
+      }
       currencyRate.put(rate.getCurrencyConversion(), roundedRate);
     });
 

@@ -2,6 +2,7 @@ package com.revolut.assessment.web;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -35,7 +36,7 @@ public class AccountResource {
   @Path(value = Endpoints.Constants.ACCOUNTS)
   @Consumes(APPLICATION_JSON)
   @Produces(APPLICATION_JSON)
-  public Response create(AccountRequest accountRequest, @Context UriInfo uriInfo) {
+  public Response create(@Valid AccountRequest accountRequest, @Context UriInfo uriInfo) {
     UriBuilder builder = uriInfo.getAbsolutePathBuilder();
     builder.path(accountRequest.getNumber());
     try {
